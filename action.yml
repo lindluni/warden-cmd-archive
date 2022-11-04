@@ -1,0 +1,33 @@
+name: 'Repository Archival Tool'
+author: 'Brett Logan'
+description: 'Automate the archival of repositories'
+inputs:
+  actor:
+    description: 'The actor who triggered the event'
+    required: true
+    default: ${{ github.actor }}
+  admin_token:
+    description: 'Token with org admin privileges'
+    required: true
+  body:
+    description: 'The body of the newly created comment'
+    required: true
+    default: ${{ github.event.comment.body }}
+  issue_number:
+    description: 'The GitHub issue number'
+    required: true
+    default: ${{ github.event.issue.number }}
+  org:
+    description: 'The GitHub org containing the repo'
+    required: true
+    default: ${{ github.repository_owner }}
+  repo:
+    description: 'The repo where the GitHub issue exists'
+    required: true
+  token:
+    description: 'GitHub Admin PAT to open issues and comment'
+    required: true
+    default: ${{ github.token }}
+runs:
+  using: node16
+  main: dist/index.js
